@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout style="@style/playersLayout">
+
+        <EditText
+            style="@style/editPlayerNR"
+            android:id="@+id/playerNumber"/>
+
+        <TextView
+            style="@style/textView"
+            android:text="@string/playerPoints"
+            android:id="@+id/playerPTS"/>
+
+        <TextView
+            style="@style/textView"
+            android:text="@string/plusOne" />
+
+        <TextView
+            style="@style/textView"
+            android:text="@string/plusTwo"/>
+
+        <TextView
+            style="@style/textView"
+            android:text="@string/plusThree"/>
+
+    </LinearLayout>
+
+</LinearLayout>

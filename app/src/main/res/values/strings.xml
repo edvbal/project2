@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">project2</string>
+    <string name="playerNumber">#</string>
+    <string name="playerPoints">PTS</string>
+    <string name="plusOne">+2</string>
+    <string name="plusTwo">+2</string>
+    <string name="plusThree">+3</string>
+
+
+</resources>
