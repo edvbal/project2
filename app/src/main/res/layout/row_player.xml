@@ -6,9 +6,9 @@
 
     <LinearLayout style="@style/playersLayout">
 
-        <EditText
+        <TextView
             android:id="@+id/playerNumber"
-            style="@style/editPlayerNR" />
+            style="@style/textView" />
 
         <TextView
             android:id="@+id/playerPTS"

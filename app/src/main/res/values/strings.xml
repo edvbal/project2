@@ -5,6 +5,6 @@
     <string name="plusOne">+1</string>
     <string name="plusTwo">+2</string>
     <string name="plusThree">+3</string>
-
+    <string name="addPlayer">Add player</string>
 
 </resources>

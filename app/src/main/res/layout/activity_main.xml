@@ -48,67 +48,73 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
+        <Button
+            android:id="@+id/button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="#"/>
+            android:onClick="addPlayerA"
+            android:text="@string/addPlayer" />
+
+        <EditText
+            android:id="@+id/numberA"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="#" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="Add Player"
-            android:id="@+id/button" />
+            android:layout_weight="1"
+            android:onClick="addPlayerB"
+            android:text="@string/addPlayer" />
 
-        <Button
+        <EditText
+            android:id="@+id/numberB"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="Reset" />
+            android:layout_weight="1"
+            android:hint="#" />
+
     </LinearLayout>
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="15">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <ListView
+                android:id="@+id/teamAList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/teamAList">
-
-                </ListView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/teamBList">
-
-                </ListView>
-
-            </LinearLayout>
+            </ListView>
 
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/teamBList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
