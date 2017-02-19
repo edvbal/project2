@@ -7,25 +7,25 @@
     <LinearLayout style="@style/playersLayout">
 
         <EditText
-            style="@style/editPlayerNR"
-            android:id="@+id/playerNumber"/>
+            android:id="@+id/playerNumber"
+            style="@style/editPlayerNR" />
 
         <TextView
+            android:id="@+id/playerPTS"
             style="@style/textView"
-            android:text="@string/playerPoints"
-            android:id="@+id/playerPTS"/>
+            android:text="@string/playerPoints" />
 
-        <TextView
+        <Button
             style="@style/textView"
             android:text="@string/plusOne" />
 
-        <TextView
+        <Button
             style="@style/textView"
-            android:text="@string/plusTwo"/>
+            android:text="@string/plusTwo" />
 
-        <TextView
+        <Button
             style="@style/textView"
-            android:text="@string/plusThree"/>
+            android:text="@string/plusThree" />
 
     </LinearLayout>
 
