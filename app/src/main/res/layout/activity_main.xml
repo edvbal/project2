@@ -14,15 +14,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
-        <TextView
+        <EditText
             android:id="@+id/teamA"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Team A" />
+            android:layout_height="wrap_content"
+            android:hint="Insert team name" />
 
         <TextView
             android:id="@+id/scoreA"
@@ -34,18 +34,18 @@
             style="@style/textView"
             android:text="Score" />
 
-        <TextView
+        <EditText
             android:id="@+id/teamB"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:gravity="right"
-            android:text="Team B" />
+            android:layout_height="wrap_content"
+            android:hint="Insert team name" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <Button
@@ -58,10 +58,9 @@
 
         <EditText
             android:id="@+id/numberA"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="#" />
+            style="@style/editPlayerNR"
+            android:hint="#"
+            android:inputType="number"/>
 
         <Button
             android:layout_width="0dp"
@@ -75,6 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:inputType="number"
             android:hint="#" />
 
     </LinearLayout>
@@ -82,19 +82,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/teamAList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </ListView>
 
@@ -102,14 +103,14 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/teamBList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </ListView>
 
