@@ -7,7 +7,7 @@ package com.example.android.project2;
 public class Player {
     private int number, score;
 
-    public Player(){}
+    public Player(int nr){this.number = number;}
 
     public void setNR(int nr) {this.number = nr;}
     public void setScore(int score) {this.score = score;}
