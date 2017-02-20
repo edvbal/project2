@@ -1,6 +1,7 @@
 package com.example.android.project2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,9 @@ import static com.example.android.project2.R.id.playerPTS;
 
 public class PlayerAdapter extends ArrayAdapter {
     private List list = new ArrayList();
-    private int pts;
+    int pts;
     public PlayerAdapter(Context context, int resource) {super(context,resource);}
+    SharedPreferences sharedPref = getContext().getSharedPreferences("score",Context.MODE_PRIVATE);
 
     public void add(Player object){
         super.add(object);
@@ -47,11 +49,16 @@ public class PlayerAdapter extends ArrayAdapter {
             playerHolder.plusTwo = (Button) row.findViewById(R.id.plusTwo);
             playerHolder.plusThree = (Button) row.findViewById(R.id.plusThree);
 
+            Player player = (Player) this.getItem(position);
+            pts = player.getScore();
             playerHolder.plusOne.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts++;
+                    SharedPreferences.Editor edit = sharedPref.edit();
+                    edit.putInt("score", sharedPref.getInt("score",0)+pts);
+                    edit.apply();
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
@@ -60,6 +67,9 @@ public class PlayerAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts += 2;
+                    SharedPreferences.Editor edit = sharedPref.edit();
+                    edit.putInt("score", sharedPref.getInt("score",0)+pts);
+                    edit.apply();
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
@@ -68,6 +78,9 @@ public class PlayerAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts += 3;
+                    SharedPreferences.Editor edit = sharedPref.edit();
+                    edit.putInt("score", sharedPref.getInt("score",0)+pts);
+                    edit.apply();
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
@@ -78,7 +91,7 @@ public class PlayerAdapter extends ArrayAdapter {
         }
         Player player = (Player) this.getItem(position);
         playerHolder.playerNumber.setText( "#"+Integer.toString(player.getNumber()));
-        playerHolder.playerPTS.setText(Integer.toString(0));
+        //playerHolder.playerPTS.setText(Integer.toString(pts));
         return row;
     }
 
@@ -88,4 +101,3 @@ public class PlayerAdapter extends ArrayAdapter {
         TextView teamA, teamB;
     }
 }
-

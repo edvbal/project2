@@ -8,7 +8,7 @@ public class Player {
     private int number, score;
     private String team;
 
-    public Player(int nr,String team){this.number = nr; this.team = team;}
+    public Player(int nr,String team, int score){this.number = nr; this.team = team; this.score = score;}
 
     public void setNR(int nr) {this.number = nr;}
     public int getNumber() {return number;}
