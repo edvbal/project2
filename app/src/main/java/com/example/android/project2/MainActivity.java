@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         playerAdapterB = new PlayerAdapter(this, R.layout.row_player);
         listViewB.setAdapter(playerAdapterB);
 
-        SharedPreferences sharedPrefAs = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefAss = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefScoreA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefScoreB = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
 
-        sharedPrefAs.registerOnSharedPreferenceChangeListener(this);
-        sharedPrefAss.registerOnSharedPreferenceChangeListener(this);
+        sharedPrefScoreA.registerOnSharedPreferenceChangeListener(this);
+        sharedPrefScoreB.registerOnSharedPreferenceChangeListener(this);
     }
 
 
