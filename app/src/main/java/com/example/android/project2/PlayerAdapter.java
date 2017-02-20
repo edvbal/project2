@@ -18,11 +18,15 @@ import static com.example.android.project2.R.id.playerPTS;
  * Created by Edvinas on 19/02/2017.
  */
 
-public class PlayerAdapter extends ArrayAdapter {
+public class PlayerAdapter extends ArrayAdapter{
     private List list = new ArrayList();
     int pts;
     public PlayerAdapter(Context context, int resource) {super(context,resource);}
-    SharedPreferences sharedPref = getContext().getSharedPreferences("score",Context.MODE_PRIVATE);
+    SharedPreferences sharedPrefA = getContext().getSharedPreferences("scoreA",Context.MODE_PRIVATE);
+    SharedPreferences sharedPrefB = getContext().getSharedPreferences("scoreB",Context.MODE_PRIVATE);
+    SharedPreferences sharedPrefName = getContext().getSharedPreferences("nameA", Context.MODE_PRIVATE);
+    boolean teamA;
+
 
     public void add(Player object){
         super.add(object);
@@ -51,14 +55,27 @@ public class PlayerAdapter extends ArrayAdapter {
 
             Player player = (Player) this.getItem(position);
             pts = player.getScore();
+            //Toast.makeText(getContext(), player.getTeam(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), sharedPrefName.getString("nameB",""), Toast.LENGTH_SHORT).show();
+
+            if (sharedPrefName.getString("nameA","").equals(player.getTeam()))
+                teamA = true;
+            else teamA = false;
+
             playerHolder.plusOne.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts++;
-                    SharedPreferences.Editor edit = sharedPref.edit();
-                    edit.putInt("score", sharedPref.getInt("score",0)+pts);
-                    edit.apply();
+                    if (teamA){
+                        SharedPreferences.Editor edit = sharedPrefA.edit();
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+1);
+                        edit.apply();
+                    }else{
+                        SharedPreferences.Editor edit = sharedPrefB.edit();
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)+1);
+                        edit.apply();
+                    }
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
@@ -67,9 +84,15 @@ public class PlayerAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts += 2;
-                    SharedPreferences.Editor edit = sharedPref.edit();
-                    edit.putInt("score", sharedPref.getInt("score",0)+pts);
-                    edit.apply();
+                    if (teamA){
+                        SharedPreferences.Editor edit = sharedPrefA.edit();
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+2);
+                        edit.apply();
+                    }else{
+                        SharedPreferences.Editor edit = sharedPrefB.edit();
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)+2);
+                        edit.apply();
+                    }
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
@@ -78,9 +101,15 @@ public class PlayerAdapter extends ArrayAdapter {
                 public void onClick(View v) {
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts += 3;
-                    SharedPreferences.Editor edit = sharedPref.edit();
-                    edit.putInt("score", sharedPref.getInt("score",0)+pts);
-                    edit.apply();
+                    if (teamA){
+                        SharedPreferences.Editor edit = sharedPrefA.edit();
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+3);
+                        edit.apply();
+                    }else{
+                        SharedPreferences.Editor edit = sharedPrefB.edit();
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)+3);
+                        edit.apply();
+                    }
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
@@ -91,7 +120,6 @@ public class PlayerAdapter extends ArrayAdapter {
         }
         Player player = (Player) this.getItem(position);
         playerHolder.playerNumber.setText( "#"+Integer.toString(player.getNumber()));
-        //playerHolder.playerPTS.setText(Integer.toString(pts));
         return row;
     }
 
