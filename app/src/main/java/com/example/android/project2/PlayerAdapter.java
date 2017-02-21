@@ -16,6 +16,8 @@ import static com.example.android.project2.R.id.playerPTS;
 
 /**
  * Created by Edvinas on 19/02/2017.
+ * Custom ArrayAdapter class to adjust ListView row (row_player) which shows Player stats.
+ * credits : PRABEESH R K https://www.youtube.com/watch?v=cyk_ht8z6IA&t=176s
  */
 
 public class PlayerAdapter extends ArrayAdapter{
@@ -52,6 +54,8 @@ public class PlayerAdapter extends ArrayAdapter{
             playerHolder.plusOne = (Button) row.findViewById(R.id.plusOne);
             playerHolder.plusTwo = (Button) row.findViewById(R.id.plusTwo);
             playerHolder.plusThree = (Button) row.findViewById(R.id.plusThree);
+            playerHolder.reset = (Button) row.findViewById(R.id.reset);
+            playerHolder.undo = (Button) row.findViewById(R.id.undo);
 
             Player player = (Player) this.getItem(position);
             pts = player.getScore();
@@ -102,6 +106,7 @@ public class PlayerAdapter extends ArrayAdapter{
                     pts = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts += 3;
                     if (teamA){
+
                         SharedPreferences.Editor edit = sharedPrefA.edit();
                         edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+3);
                         edit.apply();
@@ -113,6 +118,24 @@ public class PlayerAdapter extends ArrayAdapter{
                     playerHolder.playerPTS.setText(Integer.toString(pts));
                 }
             });
+            playerHolder.reset.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    if (teamA){
+                        SharedPreferences.Editor edit = sharedPrefA.edit();
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)-Integer.parseInt(playerHolder.playerPTS.getText().toString()));
+                        edit.apply();
+                    }
+                    else {
+                        SharedPreferences.Editor edit = sharedPrefB.edit();
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)-Integer.parseInt(playerHolder.playerPTS.getText().toString()));
+                        edit.apply();
+                    }
+                    pts = 0;
+                    playerHolder.playerPTS.setText(Integer.toString(pts));
+                }
+            });
+
             row.setTag(playerHolder);
         }
         else {
@@ -120,12 +143,16 @@ public class PlayerAdapter extends ArrayAdapter{
         }
         Player player = (Player) this.getItem(position);
         playerHolder.playerNumber.setText( "#"+Integer.toString(player.getNumber()));
+        //pts = 0;
         return row;
     }
 
     static class PlayerHolder{
         TextView playerNumber, playerPTS;
-        Button plusOne, plusTwo, plusThree;
+        Button plusOne, plusTwo, plusThree, reset, undo;
         TextView teamA, teamB;
+    }
+    public void test(View view){
+
     }
 }

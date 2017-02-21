@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <LinearLayout style="@style/playersLayout">
 
@@ -32,6 +32,23 @@
             android:text="@string/plusThree"
             android:id="@+id/plusThree"/>
 
+    </LinearLayout>
+
+    <LinearLayout style="@style/playersLayout">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:id="@+id/reset"
+            android:onClick="reset"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/undo"
+            />
     </LinearLayout>
 
 </LinearLayout>

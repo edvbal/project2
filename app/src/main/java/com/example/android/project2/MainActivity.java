@@ -10,6 +10,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.android.project2.R.id.numberA;
 import static com.example.android.project2.R.id.scoreA;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -29,28 +33,35 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     TextView teamScoreA;
     TextView teamScoreB;
 
+    List<Player> playerList = new ArrayList<Player>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPrefA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
-        sharedPrefA.edit().clear().commit();
-
-        SharedPreferences sharedPrefB = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
-        sharedPrefB.edit().clear().commit();
+        SharedPreferences sharedPrefScoreA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefScoreB = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
+        sharedPrefScoreA.edit().clear().apply();
+        sharedPrefScoreB.edit().clear().apply();
 
         SharedPreferences sharedPrefNameA = getSharedPreferences("nameA", Context.MODE_PRIVATE);
-        sharedPrefA.edit().clear().commit();
-
         SharedPreferences sharedPrefNameB = getSharedPreferences("nameB", Context.MODE_PRIVATE);
-        sharedPrefB.edit().clear().commit();
+        sharedPrefNameA.edit().clear().apply();
+        sharedPrefNameB.edit().clear().apply();
+
+        SharedPreferences sharedPrefNumberA = getSharedPreferences("numberA", Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefNumberB = getSharedPreferences("numberB", Context.MODE_PRIVATE);
+        sharedPrefNumberA.edit().clear().apply();
+        sharedPrefNumberB.edit().clear().apply();
+
+        SharedPreferences sharedPrefPlayers = getSharedPreferences("players", Context.MODE_PRIVATE);
+        sharedPrefPlayers.edit().clear().apply();
 
         teamScoreA = (TextView)findViewById(scoreA);
         teamScoreB = (TextView)findViewById(R.id.scoreB);
 
-        editNumberA = (EditText) findViewById(R.id.numberA);
+        editNumberA = (EditText) findViewById(numberA);
         editNumberB = (EditText) findViewById(R.id.numberB);
 
         editTeamA = (EditText) findViewById(R.id.teamA);
@@ -64,9 +75,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         playerAdapterB = new PlayerAdapter(this, R.layout.row_player);
         listViewB.setAdapter(playerAdapterB);
 
-        SharedPreferences sharedPrefScoreA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefScoreB = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
-
         sharedPrefScoreA.registerOnSharedPreferenceChangeListener(this);
         sharedPrefScoreB.registerOnSharedPreferenceChangeListener(this);
     }
@@ -74,26 +82,59 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public void addPlayerA(View view) {
         if (editNumberA.getText().length() != 0 && Integer.parseInt(editNumberA.getText().toString()) > 0 && Integer.parseInt(editNumberA.getText().toString()) < 100 && editTeamA.getText().length() != 0) {
-            SharedPreferences sharedPreferences = getSharedPreferences("nameA", Context.MODE_PRIVATE);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
+            SharedPreferences sharedPrefNameA = getSharedPreferences("nameA", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPrefNameA.edit();
             edit.putString("nameA", editTeamA.getText().toString());
             edit.apply();
-
+            boolean duplicate = false;
             Player player = new Player(Integer.parseInt(editNumberA.getText().toString()), editTeamA.getText().toString(),0);
-            playerAdapterA.add(player);
+
+            if (playerAdapterA.isEmpty()){
+                playerAdapterA.add(player);
+                playerList.add(player);
+            }
+            else if (!playerAdapterA.isEmpty()){
+                for (int i = 0; i < playerAdapterA.getCount(); i++){
+                    if (playerAdapterA.getItem(i).equals(player)){
+                        Toast.makeText(this, "Duplicate player number, players must have unique number", Toast.LENGTH_SHORT).show();
+                        duplicate = true;
+                    }
+                }
+                if (!duplicate){
+                    playerAdapterA.add(player);
+                    playerList.add(player);
+                }
+            }
         } else
             Toast.makeText(MainActivity.this, "Please input player number 0-99 and a team name", Toast.LENGTH_SHORT).show();
     }
 
     public void addPlayerB(View view) {
         if (editNumberB.getText().length() != 0 && Integer.parseInt(editNumberB.getText().toString()) > 0 && Integer.parseInt(editNumberB.getText().toString()) < 100 && editTeamB.getText().length() != 0) {
-            SharedPreferences sharedPreferences = getSharedPreferences("nameB", Context.MODE_PRIVATE);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
+            SharedPreferences sharedPrefNameB = getSharedPreferences("nameB", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPrefNameB.edit();
             edit.putString("nameB", editTeamB.getText().toString());
             edit.apply();
+            boolean duplicate = false;
+            Player player = new Player(Integer.parseInt(editNumberB.getText().toString()), editNumberB.getText().toString(),0);
 
-            Player player = new Player(Integer.parseInt(editNumberB.getText().toString()), editTeamB.getText().toString(),0);
-            playerAdapterB.add(player);
+            if (playerAdapterB.isEmpty()){
+                playerAdapterB.add(player);
+                playerList.add(player);
+            }
+            else if (!playerAdapterB.isEmpty()){
+                for (int i = 0; i < playerAdapterB.getCount(); i++){
+                    if (playerAdapterB.getItem(i).equals(player)){
+                        Toast.makeText(this, "Duplicate player number, players must have unique number", Toast.LENGTH_SHORT).show();
+                        duplicate = true;
+                    }
+                }
+                if (!duplicate){
+                    playerAdapterB.add(player);
+                    playerAdapterB.remove(player);
+                    playerList.add(player);
+                }
+            }
         } else
             Toast.makeText(MainActivity.this, "Please input player number 0-99 and a team name", Toast.LENGTH_SHORT).show();
     }
@@ -104,5 +145,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }else if (key.equals("scoreB")){
             teamScoreB.setText(Integer.toString(sharedPreferences.getInt("scoreB", 0)));
         }
+    }
+    public void reset(View view){
+        playerAdapterB.remove(playerList.get(0));
+        listViewB.setAdapter(playerAdapterB);
     }
 }

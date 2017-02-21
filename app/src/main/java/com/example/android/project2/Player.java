@@ -18,4 +18,20 @@ public class Player {
 
     public void setScore(int score) {this.score = score;}
     public int getScore() {return score;}
+
+    /**
+     * Overriding equals(Object o) to make it compare objects by their unique number
+     *  credits : aioobe http://stackoverflow.com/questions/6737212/how-to-find-duplicates-in-an-arraylistobject
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+
+        Player player = (Player) o;
+
+        if (number != player.number) return false;
+
+        return true;
+    }
 }
