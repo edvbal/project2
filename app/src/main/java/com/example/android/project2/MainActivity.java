@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -68,13 +69,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         editTeamB = (EditText) findViewById(R.id.teamB);
 
         listViewA = (ListView) findViewById(R.id.teamAList);
+        listViewB = (ListView) findViewById(R.id.teamBList);
+        ViewGroup headerViewA=(ViewGroup)getLayoutInflater().inflate(R.layout.header,listViewA,false);
+        ViewGroup headerViewB=(ViewGroup)getLayoutInflater().inflate(R.layout.header,listViewB,false);
+        listViewA.addHeaderView(headerViewA);
+        listViewB.addHeaderView(headerViewB);
+
         playerAdapterA = new PlayerAdapter(this, R.layout.row_player);
         listViewA.setAdapter(playerAdapterA);
 
-        listViewB = (ListView) findViewById(R.id.teamBList);
         playerAdapterB = new PlayerAdapter(this, R.layout.row_player);
         listViewB.setAdapter(playerAdapterB);
-
+//listViewB.getChildAt(1).setOnClickListener(
         sharedPrefScoreA.registerOnSharedPreferenceChangeListener(this);
         sharedPrefScoreB.registerOnSharedPreferenceChangeListener(this);
     }
@@ -146,8 +152,24 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             teamScoreB.setText(Integer.toString(sharedPreferences.getInt("scoreB", 0)));
         }
     }
-    public void reset(View view){
-        playerAdapterB.remove(playerList.get(0));
-        listViewB.setAdapter(playerAdapterB);
+    public void resetB(View view){
+        SharedPreferences scoreB = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = scoreB.edit();
+        edit.putInt("scoreB", 0);
+        edit.apply();
+        teamScoreB.setText(Integer.toString(scoreB.getInt("scoreB", 0)));
+            //playerAdapterB.remove(playerAdapterB.getItem(i).getClass().getClassLoader().);
+            playerAdapterB.remove();
+            //playerAdapterB.notifyDataSetChanged();
+
+//playerAdapterB
     }
+    public void resetA(View view){
+        SharedPreferences scoreA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = scoreA.edit();
+        edit.putInt("scoreA", 0);
+        edit.apply();
+        teamScoreA.setText(Integer.toString(scoreA.getInt("scoreA", 0)));
+    }
+
 }

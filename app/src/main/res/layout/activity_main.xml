@@ -20,62 +20,103 @@
         <EditText
             android:id="@+id/teamA"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
             android:hint="Insert team name" />
 
         <TextView
             android:id="@+id/scoreA"
             style="@style/textView"
+            android:layout_gravity="center_vertical"
             android:text="Score" />
 
         <TextView
             android:id="@+id/scoreB"
             style="@style/textView"
+            android:layout_gravity="center_vertical"
             android:text="Score" />
 
         <EditText
             android:id="@+id/teamB"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
             android:hint="Insert team name" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="addPlayerA"
-            android:text="@string/addPlayer" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/numberA"
-            style="@style/editPlayerNR"
-            android:hint="#"
-            android:inputType="number"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="resetA"
+                android:text="Reset scores" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="addPlayerB"
-            android:text="@string/addPlayer" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="resetB"
+                android:text="Reset scores" />
 
-        <EditText
-            android:id="@+id/numberB"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:hint="#" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="addPlayerA"
+                android:text="@string/addPlayer"
+                android:textSize="10sp"
+                />
+
+            <EditText
+                android:id="@+id/numberA"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:hint="#"
+                android:inputType="number" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="addPlayerB"
+                android:text="@string/addPlayer"
+                android:textSize="10sp"
+                android:id="@+id/button2" />
+
+            <EditText
+                android:id="@+id/numberB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+
+                android:hint="#"
+                android:inputType="number" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
