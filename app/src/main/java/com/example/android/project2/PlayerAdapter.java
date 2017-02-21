@@ -29,6 +29,7 @@ public class PlayerAdapter extends ArrayAdapter{
     SharedPreferences sharedPrefB = getContext().getSharedPreferences("scoreB",Context.MODE_PRIVATE);
     SharedPreferences sharedPrefName = getContext().getSharedPreferences("nameA", Context.MODE_PRIVATE);
     boolean teamA;
+    //int undoClicks;
 
 
     public void add(Player object){
@@ -60,14 +61,14 @@ public class PlayerAdapter extends ArrayAdapter{
 
             Player player = (Player) this.getItem(position);
             //pts.clear();
-            pts.add(player.getScore());
+            pts.add(Integer.parseInt(playerHolder.playerPTS.getText().toString()));
             //Toast.makeText(getContext(), player.getTeam(), Toast.LENGTH_SHORT).show();
             //Toast.makeText(getContext(), sharedPrefName.getString("nameB",""), Toast.LENGTH_SHORT).show();
 
             if (sharedPrefName.getString("nameA","").equals(player.getTeam()))
                 teamA = true;
             else teamA = false;
-
+            //undoClicks = 0;
             playerHolder.plusOne.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,7 +86,7 @@ public class PlayerAdapter extends ArrayAdapter{
                         edit.apply();
                     }
                     /*for (int i = 0; i < pts.size(); i++){
-                        Toast.makeText(getContext(),Integer.toString(i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),Integer.toString(1+i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
                     }*/
                     playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-1)));
                 }
@@ -107,7 +108,7 @@ public class PlayerAdapter extends ArrayAdapter{
                         edit.apply();
                     }
                     /*for (int i = 0; i < pts.size(); i++){
-                        Toast.makeText(getContext(),Integer.toString(i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),Integer.toString(1+i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
                     }*/
                     playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-1)));
                 }
@@ -120,7 +121,6 @@ public class PlayerAdapter extends ArrayAdapter{
                     ptss += 3;
                     pts.add(ptss);
                     if (teamA){
-
                         SharedPreferences.Editor edit = sharedPrefA.edit();
                         edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+3);
                         edit.apply();
@@ -130,7 +130,7 @@ public class PlayerAdapter extends ArrayAdapter{
                         edit.apply();
                     }
                     /*for (int i = 0; i < pts.size(); i++){
-                        Toast.makeText(getContext(),Integer.toString(i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),Integer.toString(1+i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
                     }*/
                     playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-1)));
                 }
@@ -155,23 +155,26 @@ public class PlayerAdapter extends ArrayAdapter{
             playerHolder.undo.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    if (pts.size() <= 1){
+                    Toast.makeText(getContext(),"Feature still not implemented",Toast.LENGTH_SHORT).show();
+                   /* //Toast.makeText(getContext(),Integer.toString(pts.size()),Toast.LENGTH_SHORT).show();
+
+                    if (pts.size() - undoClicks <= 0){
                         Toast.makeText(getContext(),"There is nothing to undo",Toast.LENGTH_SHORT).show();
-                    }else if (pts.size() >= 2){
-                        int undoClicks = 0;
-                        undoClicks +=2;
+                    }else if (pts.size() - undoClicks > 0){
+                        undoClicks +=1;
                         if (teamA){
                             SharedPreferences.Editor edit = sharedPrefA.edit();
-                            edit.putInt("scoreA", pts.get(pts.size()-undoClicks));
+                            edit.putInt("scoreA", pts.get(pts.size()-undoClicks-1));
                             edit.apply();
                         }
                         else {
                             SharedPreferences.Editor edit = sharedPrefB.edit();
-                            edit.putInt("scoreB", pts.get(pts.size()-undoClicks));
+                            edit.putInt("scoreB", pts.get(pts.size()-undoClicks-1));
                             edit.apply();
                         }
-                        playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-undoClicks)));
-                    }
+                        playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-undoClicks-1)));
+                        //undoClicks = 0;
+                    }*/
                 }
             });
             row.setTag(playerHolder);
