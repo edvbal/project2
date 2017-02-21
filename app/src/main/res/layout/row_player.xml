@@ -13,42 +13,42 @@
         <TextView
             android:id="@+id/playerPTS"
             style="@style/textView"
-            android:text="0"
-            />
+            android:text="0" />
 
         <Button
+            android:id="@+id/plusOne"
             style="@style/textView"
-            android:text="@string/plusOne"
-            android:id="@+id/plusOne"/>
+            android:text="@string/plusOne" />
 
         <Button
+            android:id="@+id/plusTwo"
             style="@style/textView"
-            android:text="@string/plusTwo"
-            android:id="@+id/plusTwo"/>
+            android:text="@string/plusTwo" />
 
 
         <Button
+            android:id="@+id/plusThree"
             style="@style/textView"
-            android:text="@string/plusThree"
-            android:id="@+id/plusThree"/>
+            android:text="@string/plusThree" />
 
     </LinearLayout>
 
     <LinearLayout style="@style/playersLayout">
+
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Reset"
             android:id="@+id/reset"
-            android:onClick="reset"
-            />
-        <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="reset"
+            android:text="Reset" />
+
+        <Button
             android:id="@+id/undo"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="undo" />
     </LinearLayout>
 
 </LinearLayout>
