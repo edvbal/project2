@@ -23,25 +23,35 @@ import static com.example.android.project2.R.id.playerPTS;
  * credits : PRABEESH R K https://www.youtube.com/watch?v=cyk_ht8z6IA&t=176s
  */
 
-public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class PlayerAdapter extends ArrayAdapter {
     private List list = new ArrayList();
     List<Integer> pts = new ArrayList<>();
-    public PlayerAdapter(Context context, int resource) {super(context,resource);}
-    SharedPreferences sharedPrefA = getContext().getSharedPreferences("scoreA",Context.MODE_PRIVATE);
-    SharedPreferences sharedPrefB = getContext().getSharedPreferences("scoreB",Context.MODE_PRIVATE);
+
+    public PlayerAdapter(Context context, int resource) {
+        super(context, resource);
+    }
+
+    SharedPreferences sharedPrefA = getContext().getSharedPreferences("scoreA", Context.MODE_PRIVATE);
+    SharedPreferences sharedPrefB = getContext().getSharedPreferences("scoreB", Context.MODE_PRIVATE);
     SharedPreferences sharedPrefName = getContext().getSharedPreferences("nameA", Context.MODE_PRIVATE);
     boolean teamA;
     //int undoClicks;
 
 
-    public void add(Player object){
+    public void add(Player object) {
         super.add(object);
         list.add(object);
     }
+
     @Override
-    public int getCount() {return list.size();}
+    public int getCount() {
+        return list.size();
+    }
+
     @Override
-    public Object getItem(int position) {return list.get(position);}
+    public Object getItem(int position) {
+        return list.get(position);
+    }
 
     public void remove() {
         list.clear();
@@ -50,15 +60,12 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
     }
 
 
-
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent){
-        sharedPrefA.registerOnSharedPreferenceChangeListener(this);
-        sharedPrefB.registerOnSharedPreferenceChangeListener(this);
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View row;
         row = convertView;
         final PlayerHolder playerHolder;
-        if (row == null){
+        if (row == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.row_player, parent, false);
             playerHolder = new PlayerHolder();
@@ -77,26 +84,25 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
             //Toast.makeText(getContext(), player.getTeam(), Toast.LENGTH_SHORT).show();
             //Toast.makeText(getContext(), sharedPrefName.getString("nameB",""), Toast.LENGTH_SHORT).show();
 
-            if (sharedPrefName.getString("nameA","").equals(player.getTeam())){
+            if (sharedPrefName.getString("nameA", "").equals(player.getTeam())) {
                 teamA = true;
-                playerHolder.delete.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
-                playerHolder.undo.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
-                playerHolder.reset.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
+                playerHolder.delete.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
+                playerHolder.undo.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
+                playerHolder.reset.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
 
-                playerHolder.plusOne.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
-                playerHolder.plusTwo.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
-                playerHolder.plusThree.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
+                playerHolder.plusOne.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
+                playerHolder.plusTwo.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
+                playerHolder.plusThree.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
 
-            }
-            else {
+            } else {
                 teamA = false;
-                playerHolder.delete.getBackground().setColorFilter(Color.parseColor("#2b7cff"), PorterDuff.Mode.DARKEN);
-                playerHolder.undo.getBackground().setColorFilter(Color.parseColor("#2b7cff"), PorterDuff.Mode.DARKEN);
-                playerHolder.reset.getBackground().setColorFilter(Color.parseColor("#2b7cff"), PorterDuff.Mode.DARKEN);
+                playerHolder.delete.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
+                playerHolder.undo.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
+                playerHolder.reset.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
 
-                playerHolder.plusOne.getBackground().setColorFilter(Color.parseColor("#2b7cff"), PorterDuff.Mode.DARKEN);
-                playerHolder.plusTwo.getBackground().setColorFilter(Color.parseColor("#2b7cff"), PorterDuff.Mode.DARKEN);
-                playerHolder.plusThree.getBackground().setColorFilter(Color.parseColor("#2b7cff"), PorterDuff.Mode.DARKEN);
+                playerHolder.plusOne.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
+                playerHolder.plusTwo.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
+                playerHolder.plusThree.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
             }
             //undoClicks = 0;
             playerHolder.plusOne.setOnClickListener(new View.OnClickListener() {
@@ -106,19 +112,19 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
                     int ptss = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     pts.add(++ptss);
                     //Toast.makeText(getContext(),Integer.toString(pts.get(pts.size()-1)),Toast.LENGTH_SHORT).show();
-                    if (teamA){
+                    if (teamA) {
                         SharedPreferences.Editor edit = sharedPrefA.edit();
-                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+1);
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA", 0) + 1);
                         edit.apply();
-                    }else{
+                    } else {
                         SharedPreferences.Editor edit = sharedPrefB.edit();
-                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)+1);
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB", 0) + 1);
                         edit.apply();
                     }
                     /*for (int i = 0; i < pts.size(); i++){
                         Toast.makeText(getContext(),Integer.toString(1+i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
                     }*/
-                    playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-1)));
+                    playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size() - 1)));
                 }
             });
             playerHolder.plusTwo.setOnClickListener(new View.OnClickListener() {
@@ -128,19 +134,19 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
                     int ptss = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     ptss += 2;
                     pts.add(ptss);
-                    if (teamA){
+                    if (teamA) {
                         SharedPreferences.Editor edit = sharedPrefA.edit();
-                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+2);
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA", 0) + 2);
                         edit.apply();
-                    }else{
+                    } else {
                         SharedPreferences.Editor edit = sharedPrefB.edit();
-                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)+2);
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB", 0) + 2);
                         edit.apply();
                     }
                     /*for (int i = 0; i < pts.size(); i++){
                         Toast.makeText(getContext(),Integer.toString(1+i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
                     }*/
-                    playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-1)));
+                    playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size() - 1)));
                 }
             });
             playerHolder.plusThree.setOnClickListener(new View.OnClickListener() {
@@ -150,42 +156,41 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
                     int ptss = Integer.parseInt(playerHolder.playerPTS.getText().toString());
                     ptss += 3;
                     pts.add(ptss);
-                    if (teamA){
+                    if (teamA) {
                         SharedPreferences.Editor edit = sharedPrefA.edit();
-                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)+3);
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA", 0) + 3);
                         edit.apply();
-                    }else{
+                    } else {
                         SharedPreferences.Editor edit = sharedPrefB.edit();
-                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)+3);
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB", 0) + 3);
                         edit.apply();
                     }
                     /*for (int i = 0; i < pts.size(); i++){
                         Toast.makeText(getContext(),Integer.toString(1+i)+" "+Integer.toString(pts.get(i)),Toast.LENGTH_SHORT).show();
                     }*/
-                    playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size()-1)));
+                    playerHolder.playerPTS.setText(Integer.toString(pts.get(pts.size() - 1)));
                 }
             });
-            playerHolder.reset.setOnClickListener(new View.OnClickListener(){
+            playerHolder.reset.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
-                    if (teamA){
+                public void onClick(View v) {
+                    if (teamA) {
                         SharedPreferences.Editor edit = sharedPrefA.edit();
-                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA",0)-Integer.parseInt(playerHolder.playerPTS.getText().toString()));
+                        edit.putInt("scoreA", sharedPrefA.getInt("scoreA", 0) - Integer.parseInt(playerHolder.playerPTS.getText().toString()));
                         edit.apply();
-                    }
-                    else {
+                    } else {
                         SharedPreferences.Editor edit = sharedPrefB.edit();
-                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB",0)-Integer.parseInt(playerHolder.playerPTS.getText().toString()));
+                        edit.putInt("scoreB", sharedPrefB.getInt("scoreB", 0) - Integer.parseInt(playerHolder.playerPTS.getText().toString()));
                         edit.apply();
                     }
                     pts.clear();
                     playerHolder.playerPTS.setText(Integer.toString(0));
                 }
             });
-            playerHolder.undo.setOnClickListener(new View.OnClickListener(){
+            playerHolder.undo.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
-                    Toast.makeText(getContext(),"Feature coming soon",Toast.LENGTH_SHORT).show();
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Feature coming soon", Toast.LENGTH_SHORT).show();
                    /* //Toast.makeText(getContext(),Integer.toString(pts.size()),Toast.LENGTH_SHORT).show();
 
                     if (pts.size() - undoClicks <= 0){
@@ -207,10 +212,10 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
                     }*/
                 }
             });
-            playerHolder.delete.setOnClickListener(new View.OnClickListener(){
+            playerHolder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
-                    Toast.makeText(getContext(),"Feature coming soon",Toast.LENGTH_SHORT).show();
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Feature coming soon", Toast.LENGTH_SHORT).show();
                     /*list.remove(position);
                     pts.remove(position);
                     if (teamA){
@@ -234,48 +239,17 @@ public class PlayerAdapter extends ArrayAdapter implements SharedPreferences.OnS
                 }
             });
             row.setTag(playerHolder);
-        }
-        else {
+        } else {
             playerHolder = (PlayerHolder) row.getTag();
         }
         Player player = (Player) this.getItem(position);
-        playerHolder.playerNumber.setText( "#"+Integer.toString(player.getNumber()));
+        playerHolder.playerNumber.setText("#" + Integer.toString(player.getNumber()));
         //pts = 0;
         return row;
     }
 
-    public static class PlayerHolder{
+    public static class PlayerHolder {
         TextView playerNumber, playerPTS;
         Button plusOne, plusTwo, plusThree, reset, undo, delete;
-        TextView teamA, teamB;
     }
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key){
-        if(key.equals("scoreA")){
-            Toast.makeText(getContext(),"scoreA",Toast.LENGTH_SHORT).show();
-        }else if (key.equals("scoreB")){
-            Toast.makeText(getContext(),"scoreB",Toast.LENGTH_SHORT).show();
-        }
-    }
-    /*public void remove(View view){
-        View row;
-        row = view;
-        final PlayerHolder playerHolder;
-        ViewGroup parent;
-        if (row == null){
-            LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = layoutInflater.inflate(R.layout.row_player, activity_main, false);
-
-            playerHolder = new PlayerHolder();
-
-            playerHolder.playerNumber = (TextView) row.findViewById(R.id.playerNumber);
-            playerHolder.playerPTS = (TextView) row.findViewById(playerPTS);
-
-            playerHolder.plusOne = (Button) row.findViewById(R.id.plusOne);
-            playerHolder.plusTwo = (Button) row.findViewById(R.id.plusTwo);
-            playerHolder.plusThree = (Button) row.findViewById(R.id.plusThree);
-            playerHolder.reset = (Button) row.findViewById(R.id.reset);
-            playerHolder.undo = (Button) row.findViewById(R.id.undo);
-        }*/
-
-    }
+}

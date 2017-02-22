@@ -2,65 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="16dp">
+    android:layout_margin="@dimen/row_16dp"
+    android:orientation="vertical">
 
-    <LinearLayout style="@style/playersLayout">
+    <LinearLayout style="@style/linearLayoutRowPlayer"
+        android:layout_marginTop="@dimen/row_8dp">
 
         <TextView
             android:id="@+id/playerNumber"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center_vertical"
-            android:textAlignment="center">
+
+            style="@style/textViewRowPlayer"
+            android:layout_weight="2">
 
         </TextView>
 
         <TextView
             android:id="@+id/playerPTS"
-            style="@style/TextAppearance.AppCompat"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            style="@style/textViewRowPlayer"
             android:layout_weight="3"
-            android:gravity="center_vertical"
-            android:textAlignment="center"
-            android:text="0" />
+            android:text="@string/defaultPlayerPts" />
 
         <Button
             android:id="@+id/plusOne"
-            style="@style/materialButton"
+            style="@style/materialButtonRow"
             android:text="@string/plusOne" />
 
         <Button
             android:id="@+id/plusTwo"
-            style="@style/materialButton"
+            style="@style/materialButtonRow"
             android:text="@string/plusTwo" />
 
 
         <Button
             android:id="@+id/plusThree"
-            style="@style/materialButton"
+            style="@style/materialButtonRow"
             android:text="@string/plusThree" />
 
     </LinearLayout>
 
-    <LinearLayout style="@style/playersLayout">
+    <LinearLayout style="@style/linearLayoutRowPlayer"
+        android:layout_marginBottom="@dimen/row_8dp">
 
         <Button
             android:id="@+id/reset"
-            style="@style/materialButton"
-            android:text="Reset" />
+            style="@style/materialButtonRow"
+            android:text="@string/reset"
+
+            />
 
         <Button
-        android:id="@+id/undo"
-            style="@style/materialButton"
-        android:text="Undo" />
+            android:id="@+id/undo"
+            style="@style/materialButtonRow"
+            android:text="@string/undo" />
 
         <Button
             android:id="@+id/delete"
-            style="@style/materialButton"
-            android:text="Delete" />
+            style="@style/materialButtonRow"
+            android:text="@string/delete" />
     </LinearLayout>
 
 </LinearLayout>

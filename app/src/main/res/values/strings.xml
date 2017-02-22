@@ -6,5 +6,14 @@
     <string name="plusTwo">+2</string>
     <string name="plusThree">+3</string>
     <string name="addPlayer">Add player</string>
+    <string name="defaultPlayerPts">0</string>
+    <string name="reset">Reset</string>
+    <string name="undo">Undo</string>
+    <string name="delete">Delete</string>
+    <string name="headerNr">NR</string>
+    <string name="headerPTS">PTS</string>
+    <string name="resetScores">Reset scores</string>
+    <string name="insertTeam">Insert team name</string>
+    <string name="score">Score</string>
 
 </resources>
