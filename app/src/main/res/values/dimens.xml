@@ -19,5 +19,6 @@
     <dimen name="activity_16dp">16dp</dimen>
     <dimen name="activity_12sp">12sp</dimen>
     <dimen name="activity_16sp">16sp</dimen>
+    <dimen name="activity_22sp">22sp</dimen>
     <dimen name="activity_26sp">26sp</dimen>
 </resources>
