@@ -10,6 +10,9 @@
 
         <TextView
             android:id="@+id/playerNumber"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed"
 
             style="@style/textViewRowPlayer"
             android:layout_weight="2">
@@ -20,31 +23,56 @@
             android:id="@+id/playerPTS"
             style="@style/textViewRowPlayer"
             android:layout_weight="3"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+
             android:text="@string/defaultPlayerPts" />
 
         <Button
             android:id="@+id/plusOne"
             style="@style/materialButtonRow"
+            android:background="#37364c"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
             android:text="@string/plusOne" />
 
         <Button
             android:id="@+id/plusTwo"
+            android:background="#37364c"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+
             style="@style/materialButtonRow"
             android:text="@string/plusTwo" />
 
 
         <Button
             android:id="@+id/plusThree"
+            android:background="#37364c"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+
             style="@style/materialButtonRow"
             android:text="@string/plusThree" />
 
     </LinearLayout>
 
     <LinearLayout style="@style/linearLayoutRowPlayer"
+        android:paddingTop="5dp"
+
         android:layout_marginBottom="@dimen/row_8dp">
 
         <Button
             android:id="@+id/reset"
+            android:background="#37364c"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+
             style="@style/materialButtonRow"
             android:text="@string/reset"
 
@@ -52,11 +80,21 @@
 
         <Button
             android:id="@+id/undo"
+            android:background="#37364c"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+
             style="@style/materialButtonRow"
             android:text="@string/undo" />
 
         <Button
             android:id="@+id/delete"
+            android:background="#37364c"
+            android:textColor="#cc3333"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+
             style="@style/materialButtonRow"
             android:text="@string/delete" />
     </LinearLayout>

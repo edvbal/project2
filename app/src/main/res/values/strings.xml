@@ -15,5 +15,8 @@
     <string name="resetScores">Reset scores</string>
     <string name="insertTeam">Insert team name</string>
     <string name="score">Score</string>
+    <string name="NR">NR</string>
+    <string name="PTS">PTS</string>
+    <string name="resetPTS">RESET PTS</string>
 
 </resources>

@@ -2,8 +2,6 @@ package com.example.android.project2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -56,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         resetScoresA = (Button) findViewById(R.id.addPlayerA);
         resetScoresB = (Button) findViewById(R.id.addPlayerB);
 
-        //colorButtons();
 
         teamScoreA = (TextView) findViewById(R.id.scoreA);
         teamScoreB = (TextView) findViewById(R.id.scoreB);
@@ -109,12 +106,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         SharedPreferences sharedPrefPlayers = getSharedPreferences("players", Context.MODE_PRIVATE);
         sharedPrefPlayers.edit().clear().apply();
     }
-    public void colorButtons() {
-        resetScoresA.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
-        addPlayerA.getBackground().setColorFilter(Color.parseColor("#dbf2d7"), PorterDuff.Mode.DARKEN);
-        resetScoresB.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
-        addPlayerB.getBackground().setColorFilter(Color.parseColor("#d6e1f1"), PorterDuff.Mode.DARKEN);
-    }
     public void addPlayerA(View view) {
         if (editNumberA.getText().length() != 0 && Integer.parseInt(editNumberA.getText().toString()) > 0 && Integer.parseInt(editNumberA.getText().toString()) < 100 && editTeamA.getText().length() != 0) {
             SharedPreferences sharedPrefNameA = getSharedPreferences("nameA", Context.MODE_PRIVATE);
@@ -124,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             boolean duplicate = false;
             Player player = new Player(Integer.parseInt(editNumberA.getText().toString()), editTeamA.getText().toString(), 0);
             if (playerAdapterA.isEmpty()) {
-                nrHeaderA.setText("NR");
-                ptsHeaderA.setText("PTS");
+                nrHeaderA.setText(R.string.NR);
+                ptsHeaderA.setText(R.string.PTS);
                 playerAdapterA.add(player);
             } else if (!playerAdapterA.isEmpty()) {
                 for (int i = 0; i < playerAdapterA.getCount(); i++) {
@@ -150,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             boolean duplicate = false;
             Player player = new Player(Integer.parseInt(editNumberB.getText().toString()), editNumberB.getText().toString(), 0);
             if (playerAdapterB.isEmpty()) {
-                nrHeaderB.setText("NR");
-                ptsHeaderB.setText("PTS");
+                nrHeaderB.setText(R.string.NR);
+                ptsHeaderB.setText(R.string.PTS);
                 playerAdapterB.add(player);
             } else if (!playerAdapterB.isEmpty()) {
                 for (int i = 0; i < playerAdapterB.getCount(); i++) {
