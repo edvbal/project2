@@ -3,17 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/row_16dp"
-    android:orientation="vertical">
+    android:background="@color/row_player_backgorund"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/activity_8dp"
+    >
 
     <LinearLayout style="@style/linearLayoutRowPlayer"
-        android:layout_marginTop="@dimen/row_8dp">
+        android:layout_marginLeft="@dimen/row_8dp"
+        android:layout_marginRight="@dimen/row_8dp"
+        android:layout_marginTop="@dimen/activity_8dp">
 
         <TextView
             android:id="@+id/playerNumber"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-condensed"
-
             style="@style/textViewRowPlayer"
             android:layout_weight="2">
 
@@ -23,56 +24,32 @@
             android:id="@+id/playerPTS"
             style="@style/textViewRowPlayer"
             android:layout_weight="3"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
 
             android:text="@string/defaultPlayerPts" />
 
         <Button
             android:id="@+id/plusOne"
             style="@style/materialButtonRow"
-            android:background="#37364c"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
             android:text="@string/plusOne" />
 
         <Button
             android:id="@+id/plusTwo"
-            android:background="#37364c"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
-
             style="@style/materialButtonRow"
             android:text="@string/plusTwo" />
 
 
         <Button
             android:id="@+id/plusThree"
-            android:background="#37364c"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
-
             style="@style/materialButtonRow"
             android:text="@string/plusThree" />
 
     </LinearLayout>
 
     <LinearLayout style="@style/linearLayoutRowPlayer"
-        android:paddingTop="5dp"
-
-        android:layout_marginBottom="@dimen/row_8dp">
+        android:layout_margin="@dimen/row_8dp">
 
         <Button
             android:id="@+id/reset"
-            android:background="#37364c"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
-
             style="@style/materialButtonRow"
             android:text="@string/reset"
 
@@ -80,21 +57,11 @@
 
         <Button
             android:id="@+id/undo"
-            android:background="#37364c"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
-
             style="@style/materialButtonRow"
             android:text="@string/undo" />
 
         <Button
             android:id="@+id/delete"
-            android:background="#37364c"
-            android:textColor="#cc3333"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light"
-
             style="@style/materialButtonRow"
             android:text="@string/delete" />
     </LinearLayout>

@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#37364c</color>
-    <color name="colorAccent">#37364c</color>
+    <color name="colorAccent">#cc3333</color>
+    <color name="backgroundButton">#37364c</color>
+    <color name="buttonText">#cc3333</color>
+    <color name="teamScoreB">#EF6C00</color>
+    <color name="teamScoreA">#2E7D32</color>
+    <color name="row_player_backgorund">#27bebebe</color>
 </resources>
