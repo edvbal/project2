@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.android.project2.R.id.scoreA;
+
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     /**
      * Declaring all the views, and PlayerAdapter for ListView
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     TextView ptsHeaderB;
     TextView nrHeaderB;
 
-    Button resetScoresA;
     Button resetScoresB;
 
     Button addPlayerAButton;
@@ -70,10 +71,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         addPlayerAButton = (Button) findViewById(R.id.addPlayerA);
         addPlayerBButton = (Button) findViewById(R.id.addPlayerB);
 
-        resetScoresA = (Button) findViewById(R.id.resetScoresA);
         resetScoresB = (Button) findViewById(R.id.resetScoresB);
 
-        teamScoreA = (TextView) findViewById(R.id.scoreA);
+        teamScoreA = (TextView) findViewById(scoreA);
         teamScoreB = (TextView) findViewById(R.id.scoreB);
 
         editNumberA = (EditText) findViewById(R.id.numberA);
@@ -258,10 +258,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public void resetB(View view) {
         SharedPreferences scoreB = getSharedPreferences("scoreB", Context.MODE_PRIVATE);
+        SharedPreferences scoreA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = scoreB.edit();
         edit.putInt("scoreB", 0);
         edit.apply();
+        edit = scoreA.edit();
+        edit.putInt("scoreA", 0);
+        edit.apply();
+
         resetEverythingBSide(scoreB);
+        resetEverythingASide(scoreA);
     }
 
     private void resetEverythingBSide(SharedPreferences scoreB) {
@@ -269,14 +275,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         nrHeaderB.setText("");
         ptsHeaderB.setText("");
         playerAdapterB.remove();
-    }
-
-    public void resetA(View view) {
-        SharedPreferences scoreA = getSharedPreferences("scoreA", Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = scoreA.edit();
-        edit.putInt("scoreA", 0);
-        edit.apply();
-        resetEverythingASide(scoreA);
     }
 
     private void resetEverythingASide(SharedPreferences scoreA) {

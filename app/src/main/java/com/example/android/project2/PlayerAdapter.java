@@ -71,7 +71,7 @@ public class PlayerAdapter extends ArrayAdapter {
 
             pts.add(player.getScore());
 
-            isTeamA = (sharedPrefName.getString("nameA", "").equals(player.getTeam())) ? true : false ;
+            isTeamA = (sharedPrefName.getString("nameA", "").equals(player.getTeam())) ? true : false;
 
             playerHolder.plusOne.setOnClickListener(new View.OnClickListener() {
                 @Override

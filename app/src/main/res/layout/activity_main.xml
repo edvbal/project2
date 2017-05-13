@@ -60,48 +60,26 @@
             android:layout_marginBottom="@dimen/activity_8dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/activity_5dp"
-                android:paddingTop="@dimen/activity_10dp">
 
-                <Button
-                    android:id="@+id/resetScoresA"
-                    style="@style/materialButtonActivityReset"
-                    android:layout_marginRight="@dimen/activity_8dp"
-                    android:background="@drawable/reset_pts"
-                    android:onClick="resetA" />
-
-                <Button
-                    android:id="@+id/resetScoresB"
-                    style="@style/materialButtonActivityReset"
-                    android:background="@drawable/reset_pts1"
-
-                    android:layout_marginLeft="@dimen/activity_8dp"
-                    android:onClick="resetB" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/resetScoresB"
+                style="@style/materialButtonActivityReset"
+                android:onClick="resetB" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-
                 android:paddingTop="@dimen/activity_5dp">
 
                 <Button
                     android:id="@+id/addPlayerA"
-                    style="@style/materialButtonActivityAddPlayer"
-
-                    />
+                    style="@style/materialButtonActivityAddPlayer" />
 
                 <EditText
                     android:id="@+id/numberA"
                     style="@style/editText"
-
                     android:layout_marginLeft="@dimen/activity_8dp"
                     android:layout_marginRight="@dimen/activity_8dp" />
 
@@ -127,9 +105,9 @@
             <LinearLayout
                 android:layout_width="@dimen/activity_0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_8dp"
                 android:layout_weight="1"
                 android:background="@color/row_player_backgorund"
-                android:layout_marginRight="@dimen/activity_8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -142,6 +120,7 @@
                 <TextView
                     android:id="@+id/ptsHeaderA"
                     style="@style/textViewRowPlayer"
+                    android:layout_marginLeft="@dimen/activity_8dp"
                     android:layout_weight="3"
                     android:textColor="@color/buttonText" />
 
@@ -153,9 +132,9 @@
             <LinearLayout
                 android:layout_width="@dimen/activity_0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8dp"
                 android:layout_weight="1"
                 android:background="@color/row_player_backgorund"
-                android:layout_marginLeft="@dimen/activity_8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -168,6 +147,7 @@
                 <TextView
                     android:id="@+id/ptsHeaderB"
                     style="@style/textViewRowPlayer"
+                    android:layout_marginLeft="@dimen/activity_8dp"
                     android:layout_weight="3"
                     android:textColor="#cc3333" />
 
@@ -188,14 +168,12 @@
                 android:id="@+id/teamAList"
                 style="@style/listView"
                 android:layout_marginRight="@dimen/activity_8dp">
-
             </ListView>
 
             <ListView
                 android:id="@+id/teamBList"
                 style="@style/listView"
                 android:layout_marginLeft="@dimen/activity_8dp">
-
             </ListView>
 
         </LinearLayout>
